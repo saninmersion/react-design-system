@@ -13,6 +13,7 @@ const renderColorGroup = type => (
         style={{
           backgroundColor: value
         }}
+        key={key}
       >
         {value}
       </li>
@@ -21,7 +22,7 @@ const renderColorGroup = type => (
 );
 
 const ColorStory = () => (
-  <div class="colors-page">
+  <div className="colors-page">
     <div className="styleguide-block">
       <h4>Primary</h4>
       {renderColorGroup("primary")}
