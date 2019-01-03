@@ -1,10 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 import { images } from "config";
-console.log(images);
 
 const Home = () => (
-  <HomeWrHomeer>
+  <HomeWrapper>
     <HomeHeader>
       <img src={images.appLogo} className="Home-logo" alt="logo" />
       <h1 className="Home-title">Design System in React</h1>
@@ -13,12 +12,12 @@ const Home = () => (
       Visit this <a href="https://medium.com/p/b2210f24e4fe/">link</a> to learn
       more.
     </HomeIntro>
-  </HomeWrHomeer>
+  </HomeWrapper>
 );
 
 export default Home;
 
-const HomeWrHomeer = styled.div`
+const HomeWrapper = styled.div`
   text-align: center;
   .Home-logo {
     animation: Home-logo-spin infinite 20s linear;

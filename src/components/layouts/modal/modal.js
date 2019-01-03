@@ -106,12 +106,10 @@ const CloseIcon = styled.span`
     }
     
     &:before{
-    rotate(-45deg);
     transform: translate(-50%,-50%) rotate(-45deg);
     }
     
     &:after{
-    rotate(45deg);
     transform: translate(-50%,-50%) rotate(45deg);
     }
 }
