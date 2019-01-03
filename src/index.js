@@ -1,6 +1,5 @@
 import React, { Fragment } from "react";
 import ReactDOM from "react-dom";
-import "./index.css";
 import Router from "./router";
 import { ThemeProvider } from "styled-components";
 import registerServiceWorker from "./registerServiceWorker";

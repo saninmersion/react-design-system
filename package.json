@@ -19,13 +19,9 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "storybook": "start-storybook -p 9009 -s public",
-    "build-storybook": "build-storybook -s public"
+    "build-storybook": "build-storybook -o public/design"
   },
   "devDependencies": {
-    "@storybook/addon-actions": "^3.4.10",
-    "@storybook/addon-links": "^3.4.10",
-    "@storybook/addons": "^3.4.10",
-    "@storybook/react": "^3.4.10",
     "add": "^2.0.6",
     "babel-core": "^6.26.3",
     "babel-runtime": "^6.26.0",
@@ -33,7 +29,12 @@
     "husky": "^1.3.1",
     "prettier": "1.14.0",
     "pretty-quick": "^1.8.0",
-    "yarn": "^1.12.3"
+    "yarn": "^1.12.3",
+    "@storybook/react": "^4.1.4",
+    "@storybook/addon-actions": "^4.1.4",
+    "@storybook/addon-links": "^4.1.4",
+    "@storybook/addons": "^4.1.4",
+    "babel-loader": "^7.1.5"
   },
   "browserslist": [
     ">0.2%",
