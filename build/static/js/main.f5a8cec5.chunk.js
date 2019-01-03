@@ -137,7 +137,7 @@
         })(r.Component);
       function H() {
         var n = Object(p.a)([
-          "\n\n\tmax-width: 600px;\n\tmargin: 80px auto;\n\n\th4{\n\t\tfont-size: 32px;\n\t}\n\n"
+          "\n  max-width: 600px;\n  margin: 80px auto;\n\n  h4 {\n    font-size: 32px;\n  }\n"
         ]);
         return (
           (H = function() {
@@ -343,4 +343,4 @@
   },
   [[23, 2, 1]]
 ]);
-//# sourceMappingURL=main.0e91df72.chunk.js.map
+//# sourceMappingURL=main.f5a8cec5.chunk.js.map
