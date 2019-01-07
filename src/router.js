@@ -1,14 +1,22 @@
-import React, { Component } from "react";
+import React, { Component, lazy, Suspense } from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
-import { Home } from "pages";
+import { Loader } from "components/layouts";
+// import { Home } from "pages";
+// import "./pages/home/home"
+
+const Home = lazy(() => import("./pages/home"));
+const About = lazy(() => import("./pages/about"));
 
 class Router extends Component {
   render() {
     return (
       <BrowserRouter>
-        <Switch>
-          <Route exact path="/" component={Home} />
-        </Switch>
+        <Suspense fallback={<Loader />}>
+          <Switch>
+            <Route exact path="/" render={() => <Home />} />
+            <Route exact path="/about" render={() => <About />} />
+          </Switch>
+        </Suspense>
       </BrowserRouter>
     );
   }
