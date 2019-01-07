@@ -32,13 +32,10 @@ class Modal extends Component {
 
   render() {
     const {
-      isOpen,
-      onRequestClose,
       shouldCloseOnOverlayClick,
       headerTitle,
       themeColor,
-      children,
-      handleClose
+      children
     } = this.props;
 
     return (

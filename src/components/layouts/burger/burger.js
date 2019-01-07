@@ -21,14 +21,14 @@ const Burger = props => {
       translateX={translateX}
       translateY={translateY}
     >
-      <a
+      <span
         title="Menu"
         className={props.isOpen ? "hamburger-icon active" : "hamburger-icon"}
       >
         <span className="line line-1" />
         <span className="line line-2" />
         <span className="line line-3" />
-      </a>
+      </span>
     </Content>
   );
 };

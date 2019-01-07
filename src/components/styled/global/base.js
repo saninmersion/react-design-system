@@ -8,6 +8,7 @@ const base = css`
   body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    font-size: ${props => props.theme.fontSize.sm}px;
   }
 `;
 
