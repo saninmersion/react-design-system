@@ -4,7 +4,7 @@ const Text = styled.p`
   ${props => {
     return `
     color: ${
-      props.light ? props.theme.neutrals.shukrabaar : props.theme.primary.raatri
+      props.light ? props.theme.primary.white : props.theme.primary.dark
     };
 
    font-size: ${

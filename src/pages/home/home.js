@@ -1,16 +1,21 @@
 import React from "react";
 import styled from "styled-components";
 import { images } from "config";
+import { RoundedButton, Heading, Text } from "components/styled";
 
 const Home = () => (
   <HomeWrapper>
     <HomeHeader>
       <img src={images.appLogo} className="Home-logo" alt="logo" />
-      <h1 className="Home-title">Design System in React</h1>
+      <Heading as="h2" light>
+        Design System in React
+      </Heading>
+      <Text light>React is awesome</Text>
     </HomeHeader>
     <HomeIntro>
-      Visit this <a href="https://medium.com/p/b2210f24e4fe/">link</a> to learn
-      more.
+      <RoundedButton as="a" href="https://medium.com/p/b2210f24e4fe/">
+        Visit Blog
+      </RoundedButton>
     </HomeIntro>
   </HomeWrapper>
 );
@@ -41,7 +46,6 @@ const HomeHeader = styled.header`
   background-color: ${props => props.theme.primary.primary};
   height: 150px;
   padding: 20px;
-  color: white;
 `;
 
 const HomeIntro = styled.div`

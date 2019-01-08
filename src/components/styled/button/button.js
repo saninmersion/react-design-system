@@ -47,7 +47,7 @@ export const Button = styled.button`
   `};
 `;
 
-export const RoundedButton = Button.extend`
+export const RoundedButton = styled(Button)`
   ${ButtonSize(8, 20, 14, 18)};
   ${ButtonVariant(primary.dark, primary.white)};
   font-weight: 600;
