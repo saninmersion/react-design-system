@@ -1,37 +1,31 @@
 .ReactModal__Overlay {
   position: fixed;
-  top: 0px;
-  left: 0px;
-  right: 0px;
-  bottom: 0px;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   background-color: rgba(0, 0, 0, 0.3);
   overflow: hidden;
   z-index: 9999999;
 }
-
 .ReactModal__Body--open {
   overflow-y: hidden;
 }
-
 .ReactModal__Content {
   bottom: auto !important;
-  bottom: initial !important;
 }
-
 .ReactModal__Content .sankey-legend {
   margin-top: 0;
 }
-
 .modal-overlay {
   position: fixed;
-  top: 0px;
-  left: 0px;
-  right: 0px;
-  bottom: 0px;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   background-color: rgba(0, 0, 0, 0.8);
   z-index: 9999;
 }
-
 .ReactModal__Content {
   top: 50%;
   width: 85%;
@@ -41,7 +35,7 @@
   border-radius: 8px;
   border-radius: 0;
   bottom: auto;
-  box-shadow: rgba(22, 45, 60, 0.3) 0px 0px 14px 0px;
+  box-shadow: 0 0 14px 0 rgba(22, 45, 60, 0.3);
   left: 0;
   margin-left: auto;
   margin-right: auto;
@@ -51,7 +45,6 @@
   right: 0;
   outline: 0;
 }
-
 .ReactModalPortal > * {
   opacity: 0;
 }
@@ -63,7 +56,6 @@
     background 0.2s cubic-bezier(0.23, 1, 0.32, 1) !important;
   opacity: 1;
 }
-
 .ReactModal__Content--after-open {
   -webkit-transform: translate3d(0, -50%, 0) scale(1);
   transform: translate3d(0, -50%, 0) scale(1);
@@ -77,9 +69,7 @@
     transform 0.35s cubic-bezier(0.23, 1, 0.32, 1),
     -webkit-transform 0.35s cubic-bezier(0.23, 1, 0.32, 1);
 }
-
 .ReactModal__Overlay--after-open--before-close {
   opacity: 0;
 }
-
-/*# sourceMappingURL=main.css.map*/
+/*# sourceMappingURL=main.00a3ba3e.chunk.css.map */

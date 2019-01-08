@@ -15,10 +15,7 @@ const Text = styled.p`
    text-align: ${props.align ? props.align : ""};
    font-weight: ${props.bold ? props.theme.fontWeight.bold : "400"};
 
-     ${props.uppercase &&
-       `
-          text-transform: uppercase;
-     `} 
+ 
    
 `;
   }};
