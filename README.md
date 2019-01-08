@@ -1,5 +1,14 @@
 # Design System in React
 
+## Features
+
+* Create react app v2
+* Styled components 4
+* Storybook 4
+* React router dom 4
+* ReactJS with lazy and suspence based code splitting
+* Sets of UI and styled components
+
 ## Installation Guide
 
 1. `git clone https://github.com/kcsuraj/react-design-system.git`
