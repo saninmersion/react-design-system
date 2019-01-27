@@ -7,10 +7,9 @@
 - Storybook 4
 - React router dom 4
 - ReactJS with lazy and suspence based code splitting
-- Sets of UI and styled components (Modal, Dropdown, Burger components & more coming)
+- Sets of UI and styled components (Modal, Dropdown, Burger components, Form & form controls and more on progress)
 - Data sharing using new context api
 - Husky for formatting your files in your pre-commit git hook
-
 
 ## Installation Guide
 

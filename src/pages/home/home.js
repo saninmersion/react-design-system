@@ -1,10 +1,15 @@
-import React from "react";
+import React, { Fragment } from "react";
 import styled from "styled-components";
 import { images } from "config";
+import { Form, TextField } from "components/layouts/form";
 import { RoundedButton, Heading, Text } from "components/styled";
 import { withAppDetail } from "appDetailProvider";
 
 const Home = ({ appDetail }) => {
+  const fields = {
+    name: ""
+  };
+
   return (
     <Wrapper>
       <Header>
@@ -24,6 +29,21 @@ const Home = ({ appDetail }) => {
           Visit Blog
         </RoundedButton>
       </Intro>
+
+      <Form
+        fields={fields}
+        endpoint="/api/"
+        hasReset={true}
+        renderFields={(fields, handleChange) => (
+          <Fragment>
+            <TextField
+              value={fields.name}
+              placeholder="Enter name"
+              onChange={handleChange}
+            />
+          </Fragment>
+        )}
+      />
     </Wrapper>
   );
 };
