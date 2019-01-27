@@ -33,7 +33,6 @@ class Api {
   }
 
   async post(resource, params) {
-    console.log(resource);
     var config = {
       headers: {
         "Content-Type": "application/x-www-form-urlencoded;charset=utf-8"

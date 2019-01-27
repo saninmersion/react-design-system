@@ -6,7 +6,8 @@ class Form extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      fields: { ...this.props.fields }
+      fields: { ...this.props.fields },
+      errors: {}
     };
   }
 
@@ -14,13 +15,36 @@ class Form extends Component {
     this.setState({ fields: { name: e.target.value } });
   };
 
-  handleSubmit = e => {
+  getFieldsData = () => {
     const { fields } = this.state;
-    const { endpoint } = this.props;
+    const { defaultFields } = this.props;
 
-    // FormService.submit(endpoint, fields).then(res => {
-    //   console.log(res);
-    // });
+    let payload = fields;
+
+    if (defaultFields && typeof defaultFields === "object") {
+      payload = { ...fields, ...{ ...defaultFields } };
+    }
+
+    return payload;
+  };
+
+  handleSubmit = e => {
+    const { endpoint, onSuccess, onError } = this.props;
+
+    FormService.submit(endpoint, this.getFieldsData())
+      .then(res => {
+        onSuccess(res);
+      })
+      .catch(error => {
+        this.setState(
+          {
+            error: error
+          },
+          () => {
+            onError(error);
+          }
+        );
+      });
 
     e.preventDefault();
   };
@@ -32,12 +56,12 @@ class Form extends Component {
   };
 
   render() {
-    const { fields } = this.state;
+    const { fields, errors } = this.state;
     const { hasReset } = this.props;
 
     return (
       <form onSubmit={this.handleSubmit}>
-        {this.props.renderFields(fields, this.handleChange)}
+        {this.props.renderFields(fields, errors, this.handleChange)}
         <input type="submit" value="Submit" />
         {hasReset && <span onClick={this.resetForm}>Reset</span>}
       </form>
@@ -54,6 +78,9 @@ Form.defaultProps = {
 Form.propTypes = {
   fields: PropTypes.shape({}).isRequired,
   renderFields: PropTypes.func.isRequired,
+  onSuccess: PropTypes.func,
+  onError: PropTypes.func,
   endpoint: PropTypes.string.isRequired,
-  hasReset: PropTypes.bool
+  hasReset: PropTypes.bool,
+  defaultFields: PropTypes.shape({})
 };
