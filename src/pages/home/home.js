@@ -1,52 +1,67 @@
-import React, { Fragment } from "react";
+import React, { Component, Fragment } from "react";
 import styled from "styled-components";
 import { images } from "config";
 import { Form, TextField } from "components/layouts/form";
 import { RoundedButton, Heading, Text } from "components/styled";
 import { withAppDetail } from "appDetailProvider";
 
-const Home = ({ appDetail }) => {
-  const fields = {
-    name: ""
+class Home extends Component {
+  onFormSuccess = data => {
+    //handle form success here
   };
 
-  return (
-    <Wrapper>
-      <Header>
-        <img src={images.appLogo} className="Home-logo" alt="logo" />
-        <Heading as="h2" light>
-          {appDetail.title}
-        </Heading>
-      </Header>
-      <Intro>
-        <StorybookDetail>
-          <Text size={16}>
-            Open Storybook to checkout UI component & guidelines
-          </Text>
-          <code>npm run storybook</code>
-        </StorybookDetail>
-        <RoundedButton as="a" href="https://medium.com/p/b2210f24e4fe/">
-          Visit Blog
-        </RoundedButton>
-      </Intro>
+  onFormError = error => {
+    //handle form error here
+  };
 
-      <Form
-        fields={fields}
-        endpoint="/api/"
-        hasReset={true}
-        renderFields={(fields, handleChange) => (
-          <Fragment>
-            <TextField
-              value={fields.name}
-              placeholder="Enter name"
-              onChange={handleChange}
-            />
-          </Fragment>
-        )}
-      />
-    </Wrapper>
-  );
-};
+  render() {
+    const { appDetail } = this.props;
+
+    const fields = {
+      name: ""
+    };
+
+    return (
+      <Wrapper>
+        <Header>
+          <img src={images.appLogo} className="Home-logo" alt="logo" />
+          <Heading as="h2" light>
+            {appDetail.title}
+          </Heading>
+        </Header>
+        <Intro>
+          <StorybookDetail>
+            <Text size={16}>
+              Open Storybook to checkout UI component & guidelines
+            </Text>
+            <code>npm run storybook</code>
+          </StorybookDetail>
+          <RoundedButton as="a" href="https://medium.com/p/b2210f24e4fe/">
+            Visit Blog
+          </RoundedButton>
+        </Intro>
+
+        <Form
+          fields={fields}
+          endpoint="/api/"
+          defaultFields={{ type: "student" }}
+          onSuccess={this.onFormSuccess}
+          onError={this.onFormError}
+          renderFields={(fields, errors, handleChange) => (
+            <Fragment>
+              <TextField
+                value={fields.name}
+                placeholder="Enter name"
+                onChange={handleChange}
+                errorMessage={errors.name}
+              />
+            </Fragment>
+          )}
+        />
+      </Wrapper>
+    );
+  }
+}
 
 export default withAppDetail(Home);
 
