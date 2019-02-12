@@ -1,119 +1,79 @@
-import React, { Component, Fragment } from "react";
-import styled from "styled-components";
-import { images } from "config";
-import { Form, TextField } from "components/layouts/form";
-import { RoundedButton, Heading, Text } from "components/styled";
-import { withAppDetail } from "appDetailProvider";
+import React, { Component, useState, useEffect, useRef } from "react";
+import axios from "axios";
 
-class Home extends Component {
-  onFormSuccess = data => {
-    //handle form success here
+const Home = () => {
+  const [results, setResults] = useState([]);
+  const [query, setQuery] = useState("react hooks");
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const searchInputRef = useRef();
+
+  useEffect(() => {
+    getResults();
+  }, []);
+
+  const getResults = async () => {
+    setIsLoading(true);
+    try {
+      const response = await axios.get(
+        `http://hn.algolia.com/api/v1/search?query=${query}`
+      );
+      setIsLoading(false);
+      setResults(response.data.hits);
+    } catch (error) {
+      setError(error);
+    }
   };
 
-  onFormError = error => {
-    //handle form error here
+  const handleSearch = e => {
+    console.log("hello");
+    e.preventDefault();
+    getResults();
   };
 
-  render() {
-    const { appDetail } = this.props;
+  const handleClearSearch = () => {
+    setQuery("");
+    searchInputRef.current.focus();
+  };
 
-    const fields = {
-      name: ""
-    };
-
-    return (
-      <Wrapper>
-        <Header>
-          <img src={images.appLogo} className="Home-logo" alt="logo" />
-          <Heading as="h2" light>
-            {appDetail.title}
-          </Heading>
-        </Header>
-        <Intro>
-          <StorybookDetail>
-            <Text size={16}>
-              Open Storybook to checkout UI component & guidelines
-            </Text>
-            <code>npm run storybook</code>
-          </StorybookDetail>
-          <RoundedButton as="a" href="https://medium.com/p/b2210f24e4fe/">
-            Visit Blog
-          </RoundedButton>
-        </Intro>
-
-        <Form
-          fields={fields}
-          endpoint="/api/"
-          defaultFields={{ type: "student" }}
-          onSuccess={this.onFormSuccess}
-          onError={this.onFormError}
-          renderFields={(fields, errors, handleChange) => (
-            <Fragment>
-              <TextField
-                value={fields.name}
-                placeholder="Enter name"
-                onChange={handleChange}
-                errorMessage={errors.name}
-              />
-            </Fragment>
-          )}
+  return (
+    <div>
+      <h1 className="text-grey-darkest font-thin">Hooks News</h1>
+      <form onSubmit={handleSearch}>
+        <input
+          onChange={event => setQuery(event.target.value)}
+          ref={searchInputRef}
+          type="text"
+          className="text"
         />
-      </Wrapper>
-    );
-  }
-}
+        <button type="submit">Search</button>
+        <button onClick={handleClearSearch}>Clear</button>
+      </form>
 
-export default withAppDetail(Home);
+      {isLoading ? (
+        <div className="font-bold text-orange-dark">Loading results...</div>
+      ) : (
+        <ul className="list-reset leading-normal">
+          {results.map(result => (
+            <li key={result.objectID}>
+              <a
+                href={result.url}
+                className="text-indigo-dark hover:text-indigo-darkest"
+              >
+                {result.title}
+              </a>
+            </li>
+          ))}
+        </ul>
+      )}
+      {error && (
+        <div>
+          className="text-red font-bold">
+          {error.message}
+        </div>
+      )}
+    </div>
+  );
+};
 
-const Wrapper = styled.div`
-  text-align: center;
-  .Home-logo {
-    animation: Home-logo-spin infinite 20s linear;
-    height: 80px;
-  }
-  .Home-title {
-    font-size: 1.5em;
-  }
-
-  @keyframes Home-logo-spin {
-    from {
-      transform: rotate(0deg);
-    }
-    to {
-      transform: rotate(360deg);
-    }
-  }
-`;
-
-const Header = styled.header`
-  background-color: ${props => props.theme.primary.primary};
-  height: 150px;
-  padding: 20px;
-`;
-
-const Intro = styled.div`
-  color: ${props => props.theme.primary.gray};
-  font-size: large;
-  padding: 36px 0;
-
-  a {
-    color: ${props => props.theme.primary.primary};
-    text-decoration: none;
-  }
-`;
-
-const StorybookDetail = styled.div`
-  margin-bottom: 20px;
-
-  > p {
-    margin-bottom: 8px;
-  }
-
-  > code {
-    background-color: rgba(27, 31, 35, 0.05);
-    border-radius: 3px;
-    font-size: 85%;
-    margin: 0;
-    padding: 0.2em 0.4em;
-  }
-`;
+export default Home;
