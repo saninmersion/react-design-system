@@ -1,6 +1,8 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
 import { Modal, Burger, ReactSelect } from "components/layouts";
+import { AutoComplete } from "../../components/layouts";
+import Menu from "../../components/layouts/menu/menu";
 
 storiesOf("UI Elements", module)
   .add("Modal", () => (
@@ -17,5 +19,21 @@ storiesOf("UI Elements", module)
         console.log(val);
       }}
       hasBorderSelection
+    />
+  ))
+  .add("Menu", () => (
+    <Menu title="Menu" options={[{ text: "About" }, { text: "Contact" }]} />
+  ))
+  .add("Auto complete", () => (
+    <AutoComplete
+      options={[
+        "Papaya",
+        "Persimmon",
+        "Paw Paw",
+        "Prickly Pear",
+        "Peach",
+        "Pomegranate",
+        "Pineapple"
+      ]}
     />
   ));
